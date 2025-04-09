@@ -2,16 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../../../../Downloads/animal2vec-main/configs"
-		},
-		{
-			"path": "../../../../Downloads/animal2vec-main/nn"
-		},
-		{
-			"path": "../../../../Downloads/animal2vec-main/scripts"
 		}
-	],
-	"settings": {}
+	]
 }
