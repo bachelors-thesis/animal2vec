@@ -22,11 +22,9 @@ import multiprocessing
 from functools import partial
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-
 # Define a custom argument type for a list of strings
 def list_of_strings(arg):
     return arg.split(',')
-
 
 def get_parser():
     parser = argparse.ArgumentParser()

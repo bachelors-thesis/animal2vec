@@ -21,7 +21,6 @@ from iterstrat.ml_stratifiers import MultilabelStratifiedShuffleSplit
 # local packages
 # from utils import get_files
 
-
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument(

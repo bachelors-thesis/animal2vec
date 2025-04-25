@@ -87,8 +87,8 @@ class AudioConfigCCAS(AudioPretrainingConfig):
     valid_subset: str = II("dataset.valid_subset")
     use_focal_loss: bool = II("criterion.use_focal_loss")
     segmentation_metrics: bool = II("criterion.segmentation_metrics")
-
-
+  
+    
 @register_task("audio_ccas", dataclass=AudioConfigCCAS)
 class AudioTaskCCAS(AudioPretrainingTask):
     """ """

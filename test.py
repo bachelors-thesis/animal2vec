@@ -6,16 +6,14 @@ import torch
 import numpy as np
 from fairseq import checkpoint_utils
 import tensorflow as tf
-
-# List all physical GPUs
-gpus = tf.config.list_physical_devices('GPU')
-print("GPUs available:", gpus)
-
+from omegaconf import OmegaConf
 # These are the class names in the MeerKAT dataset
 meerkat_class_names = ['beep', 'synch', 'sn', 'cc', 'ld', 'oth', 'mo', 'al', 'soc', 'agg', 'eating', 'focal']
 path_to_pt_file = "animal2vec_large_finetuned_MeerKAT_240507.pt"
 # load the model
 print("\n Loading model ... ", end="")
+
+# cfg = OmegaConf.load("configs/MeerKAT/a2v_large_pretrain_best.yaml")
 models, model_args = checkpoint_utils.load_model_ensemble([path_to_pt_file])
 print("done")
 
@@ -60,7 +58,7 @@ with torch.inference_mode():
         # layer_results is a list that holds the embeddings from all transformer layers
         # target is the ground truth (if provided, usually this is None, as we are not training anymore)
         net_output = model(source=single_chunk.to("cpu"))
-        
+        print(net_output)
         # 1.1) Convert to probalities. This has shape Batch x Time x Class (1, 2000, 12 in this example)
         probs = torch.sigmoid(net_output["encoder_out"].float())
         
