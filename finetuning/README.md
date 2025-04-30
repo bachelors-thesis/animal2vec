@@ -1,3 +1,5 @@
+virtual_env =
+
 1. Validate Your Data Pipeline
    What to Do:
 
@@ -76,10 +78,9 @@ Detect Bottlenecks: Verify that there are no memory leaks or I/O bottlenecks in 
 Why:
 Ensuring efficient resource utilization prevents interruptions in training and avoids wasting time during long fine-tuning processes. If hardware isn’t fully utilized, you may need to re-optimize your data pipeline or adjust batch sizes.
 
-
-"/home/reneno/.pyenv/versions/animal2vec_env/lib/python3.9/site-packages/omegaconf/_utils.py", line 610, in _raise
-    raise ex  # set end OC_CAUSE=1 for full backtrace
+"/home/reneno/.pyenv/versions/animal2vec_env/lib/python3.9/site-packages/omegaconf/\_utils.py", line 610, in \_raise
+raise ex # set end OC_CAUSE=1 for full backtrace
 omegaconf.errors.ConfigKeyError: Key 'multi_corpus_keys' not in 'AudioConfigCCAS'
-        full_key: multi_corpus_keys
-        reference_type=Optional[AudioConfigCCAS]
-        object_type=AudioConfigCCAS
+full_key: multi_corpus_keys
+reference_type=Optional[AudioConfigCCAS]
+object_type=AudioConfigCCAS
