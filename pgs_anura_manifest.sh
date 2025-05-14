@@ -9,7 +9,7 @@ srun \
   --container-image=/enroot/nvcr.io_nvidia_pytorch_22.06-py3.sqsh.packages:torch==1.13.0a0+340c412 \
   --container-workdir="$(pwd)" \
   --container-mounts="$(pwd):$(pwd),/netscratch/$USER/results:$(pwd)/results,/ds:/ds:ro" \
-  --wrap "python -m pip install --quiet --upgrade pip && \
+  bash -c "python -m pip install --quiet --upgrade pip && \
           pip install --quiet -r requirements.txt && \
           python scripts/anuraset_manifest.py \
             /ds/audio/Bioacoustics/AnuraSet/anuraset \
