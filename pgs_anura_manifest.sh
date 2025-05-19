@@ -10,13 +10,4 @@ srun \
   --container-image=/enroot/nvcr.io_nvidia_pytorch_22.06-py3.sqsh \
   --container-workdir="$(pwd)" \
   --container-mounts="$(pwd):$(pwd),/netscratch/$USER/results:$(pwd)/results,/ds:/ds:ro" \
-  bash -c "python -m pip install --quiet --upgrade pip && \
-          pip install --quiet -r requirements.txt && \
-          python scripts/anuraset_manifest.py \
-            /ds/audio/Bioacoustics/AnuraSet/anuraset \
-            --audio-dir audio \
-            --dest manifests/validation \
-            --valid-percent 0.2 \
-            --n-split 5 \
-            --seed 1612 \
-            --limit-fraction 0.05"
+  bash -c "pyenv activate animal2vec && python animal2vec_train.py model.w2v_path=../animal2vec_large_pretrained_MeerKAT_240507.pt --config-dir=./configs/anuraset/ --config-name finetune_5pct"
