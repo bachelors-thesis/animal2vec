@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://edmond.mpg.de/
+HostUrl=https://dev-edmond-objstor-hdd.s3.gwdg.de/10.17617/3.ETPUKU/190e979ebf6-e7811d151aa6?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27animal2vec_large_pretrained_MeerKAT_240507.pt&response-content-type=text%2Fplain&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241210T102310Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=W7RIGMB4SLQMPMLDY4FF%2F20241210%2Fdataverse%2Fs3%2Faws4_request&X-Amz-Signature=addcf5eefdf05e930f34ce2de9b4402647a59d52e588a7df21c2e37e5e75b416

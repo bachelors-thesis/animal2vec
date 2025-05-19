@@ -1,0 +1,1 @@
+python animal2vec_train.py model.w2v_path=/path/to/checkpoint_file --config-dir=./configs/MeerKAT/ --config-name finetune_mixup_100
