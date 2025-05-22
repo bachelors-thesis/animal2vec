@@ -10,6 +10,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import hydra
 import torch
 import logging
+import sys
 
 from omegaconf import OmegaConf, open_dict
 from hydra.core.hydra_config import HydraConfig
@@ -23,6 +24,9 @@ from nn import animal2vec_audio_main
 
 logger = logging.getLogger("animal2vec.hydra_train")
 
+# verify that manifests/validation exists
+if not os.path.exists(os.path.join(os.path.curdir, "manifests", "validation")):
+    raise FileNotFoundError(f"manifests/validation does not exist. Please create it.")    
 
 @hydra.main(config_path=os.path.join(os.path.curdir, "configs"), config_name="config")
 def hydra_main(cfg: FairseqConfig) -> float:
@@ -48,7 +52,7 @@ def _hydra_main(cfg: FairseqConfig, **kwargs) -> float:
         cfg = OmegaConf.create(
             OmegaConf.to_container(cfg, resolve=True, enum_to_str=True)
         )
-    OmegaConf.set_struct(cfg, True)
+    OmegaConf.set_struct(cfg, False)
 
     try:
         if cfg.common.profile:

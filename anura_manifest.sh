@@ -1,6 +1,6 @@
 python scripts/anuraset_manifest.py \
   ../anuraset/anuraset \
-  --audio-dir audio \
+  --audio-dir wav8k \
   --dest manifests/validation \
   --valid-percent 0.2 \
   --n-split 5 \

@@ -18,7 +18,7 @@ import numpy as np
 
 from argparse import Namespace
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, List
 from omegaconf import II
 from scipy import interpolate
 
@@ -28,6 +28,7 @@ from fairseq.data.text_compressor import TextCompressor, TextCompressionLevel
 from fairseq.data.audio.audio_utils import parse_path, read_from_stored_zip, is_sf_audio_data
 from fairseq.tasks.audio_pretraining import AudioPretrainingConfig, AudioPretrainingTask
 from fairseq.dataclass import FairseqDataclass
+
 from fairseq.tasks import FairseqTask, register_task
 import torch.multiprocessing
 from nn.utils import get_conv_size
@@ -87,7 +88,7 @@ class AudioConfigCCAS(AudioPretrainingConfig):
     valid_subset: str = II("dataset.valid_subset")
     use_focal_loss: bool = II("criterion.use_focal_loss")
     segmentation_metrics: bool = II("criterion.segmentation_metrics")
-  
+
     
 @register_task("audio_ccas", dataclass=AudioConfigCCAS)
 class AudioTaskCCAS(AudioPretrainingTask):
@@ -252,8 +253,11 @@ class FileAudioLabelDataset(RawAudioDataset, ABC):
                 sz = int(items[1])
                 label_file = self.filename_audio2label(os.path.join(self.root_dir, items[0]), lblext="h5")
                 label_file_check = os.path.isfile(label_file)
+
+             
                 if label_file_check:
                     label_size = os.path.getsize(label_file)
+                 
                 else:
                     label_size = 0.
                 if (min_sample_size is not None and sz < min_sample_size) or label_size <= min_label_size:
@@ -291,9 +295,9 @@ class FileAudioLabelDataset(RawAudioDataset, ABC):
 
     # Used to transform audio file path to label file path
     # Assumes that audio is in a "wav" directory, file extension can be arbitrary (e.g., .flac)
-    audio2label_re = re.compile(r"(?P<pre>.*)(?P<dir>wav)(?P<post>/.*\.)(?P<ext>[a-z]+)$", re.IGNORECASE)
+    audio2label_re = re.compile(r"(?P<pre>.*)(?P<dir>wav8k|audio|flac)(?P<post>/.*\.)(?P<ext>[a-z]+)$", re.IGNORECASE)
 
-    def filename_audio2label(self, audiofile, lbldir="lbl", lblext="npz"):
+    def filename_audio2label(self, audiofile, lbldir="lbl8k", lblext="npz"):
         """
         Given a path to an audio file w/ case independent format:
         .../wav/.../filename.wav,  convert to the expected label name path:
@@ -306,6 +310,7 @@ class FileAudioLabelDataset(RawAudioDataset, ABC):
         """
 
         # Look for pattern .../wav/.../file.ext
+    
         m = self.audio2label_re.match(audiofile)
         if m is None:
             raise RuntimeError(f"Cannot derive label file from: {audiofile}")

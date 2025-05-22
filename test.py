@@ -17,12 +17,12 @@ print("\n Loading model ... ", end="")
 models, model_args = checkpoint_utils.load_model_ensemble([path_to_pt_file])
 print("done")
 
-print("Moving model to cpu ... ", end="")
-model = models[0].to("cpu")  # place on appropriate device
+print("Moving model to cuda ... ", end="")
+model = models[0].to("cuda")  # place on appropriate device
 print("done\n")
 
 # Expected shape is Batch x Time. This simulates a 10s segment at 8kHz sample rate
-dummy_data = torch.rand(1, 80000).cpu()
+dummy_data = torch.rand(1, 80000).cuda()
 
 # Generally, you should always normalize your input to zero mean and unit variance
 # This repository has a helper function for that
@@ -57,8 +57,9 @@ with torch.inference_mode():
         # padding_mask is the used padding mask (usually no padding is used, then, padding_mask is None)
         # layer_results is a list that holds the embeddings from all transformer layers
         # target is the ground truth (if provided, usually this is None, as we are not training anymore)
-        net_output = model(source=single_chunk.to("cpu"))
+        net_output = model(source=single_chunk.to("cuda"))
         print(net_output)
+        print(net_output.keys())
         # 1.1) Convert to probalities. This has shape Batch x Time x Class (1, 2000, 12 in this example)
         probs = torch.sigmoid(net_output["encoder_out"].float())
         

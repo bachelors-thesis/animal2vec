@@ -1,1 +1,1 @@
-python animal2vec_train.py model.w2v_path=../animal2vec_large_pretrained_MeerKAT_240507.pt --config-dir=./configs/anuraset/ --config-name finetune_5pct
+python animal2vec_train.py model.w2v_path=/home/reneno/programming/bachelor/animal2vec_large_pretrained_MeerKAT_240507.pt --config-dir=./configs/anuraset/ --config-name=finetune_5pct
