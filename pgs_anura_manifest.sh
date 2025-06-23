@@ -10,4 +10,4 @@ srun \
   --container-image=/enroot/nvcr.io_nvidia_pytorch_22.06-py3.sqsh \
   --container-workdir="$(pwd)" \
   --container-mounts="$(pwd):$(pwd),/netscratch/$USER/results:$(pwd)/results,/ds:/ds:ro" \
-  bash -c "pyenv activate animal2vec && python animal2vec_train.py model.w2v_path=../animal2vec_large_pretrained_MeerKAT_240507.pt --config-dir=./configs/anuraset/ --config-name finetune_5pct"
+  bash -c "conda activate animal2vec && python animal2vec_train.py model.w2v_path=../animal2vec_large_pretrained_MeerKAT_240507.pt --config-dir=./configs/anuraset/ --config-name finetune_5pct"
