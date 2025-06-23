@@ -22,7 +22,7 @@ checkpoint:
 #--------------------------------------------------------------------
 task:
   _name: audio_ccas
-  data: /home/reneno/programming/bachelor/animal2vec/manifests_8k/anuraset_5pct/validation/ # see below
+  data: /home/reneno/programming/bachelor/animal2vec/manifests_8k/anuraset_100pct/validation/ # see below
   max_sample_size: 144000 # 3 s × 48 kHz
   min_sample_size: 1000
   min_label_size: 1
@@ -63,7 +63,6 @@ criterion:
 optimization:
   update_freq: [8] # ≈ effective batch 8× larger
   max_update: 13000
-  max_epoch: 300
   lr: [1.0e-4]
 
 optimizer:
