@@ -4,7 +4,7 @@
 #--------------------------------------------------------------------
 hydra:
   run:
-    dir: outputs/${now:%Y-%m-%d_%H-%M-%S}_ft_anuraset_5pct
+    dir: outputs/${now:%Y-%m-%d_%H-%M-%S}_ft_anuraset_100pct
 
 #--------------------------------------------------------------------
 common:
@@ -63,6 +63,7 @@ criterion:
 optimization:
   update_freq: [8] # ≈ effective batch 8× larger
   max_update: 13000
+  max_epoch: 300
   lr: [1.0e-4]
 
 optimizer:

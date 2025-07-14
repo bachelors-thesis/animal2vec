@@ -113,7 +113,10 @@ def load_anuraset_data(
     np.random.seed(random_seed)
     
     # Load metadata
-    metadata_path = os.path.join(base_path, "filtered_metadata2.csv")
+    metadata_path = os.path.join(base_path, "metadata.csv")
+
+    if not os.path.exists(metadata_path):
+      print(f'file not existing at position {metadata_path}')
     metadata = pd.read_csv(metadata_path)
     
     # Filter by subset if specified

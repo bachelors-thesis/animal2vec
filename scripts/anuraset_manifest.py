@@ -86,6 +86,7 @@ def main(args: argparse.Namespace) -> None:
     root = os.path.abspath(args.root)
     audio_root = os.path.join(root, args.audio_dir)
     meta_path = os.path.join(root, "metadata.csv")
+      
     if not os.path.isfile(meta_path):
         raise FileNotFoundError(f"metadata.csv not found at {meta_path}")
 
